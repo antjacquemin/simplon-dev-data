@@ -34,6 +34,15 @@ for i in range(10):
         print("X ", end="")
     print("\n", end="")
 
+#Faire apparaître une autre texture de grillage    
+for i in range(5):
+    for j in range(20):
+        print("X ", end="")
+    print("\n", end="")    
+    for j in range(20):
+        print(" X", end="")    
+    print("\n", end="")    
+    
 #Calculer les racines d’un polynôme du second degré    
 coeff = input("Veuillez entrer les 3 coefficients du polynôme séparés par un espace : ")
 listeCoeff = coeff.split()
@@ -117,3 +126,72 @@ else:
     for k in range(j, len(L2)):
         Lresult.append(L2[k])      
 print("L1 + L2 :", Lresult)        
+
+#Fusionner deux listes non triées en une liste triée
+L1 = listeHorizontale
+L2 = listeVerticale
+print("L1 :", L1)
+print("L2 :", L2)
+Lresult = []
+while(L1 and L2):
+    minL1 = L1[0]
+    minL2 = L2[0]
+    # Non optimal car recherche du minimum dans les deux listes alors qu'un des deux minima n'a pas changé
+    for el in L1:
+        if el<minL1:
+            minL1=el
+    for el in L2:
+        if el<minL2:
+            minL2=el       
+    if minL1 < minL2:
+        Lresult.append(minL1)
+        L1.pop(L1.index(minL1))
+    else:
+        Lresult.append(minL2)
+        L2.pop(L2.index(minL2))
+if L1:
+    for el in L1:
+        Lresult.append(el)  
+else:
+    for el in L2:
+        Lresult.append(el)        
+print("L1 + L2 :", Lresult)        
+
+#Autre méthode réduite
+L1 = listeHorizontale
+L2 = listeVerticale
+print("L1 :", L1)
+print("L2 :", L2)
+minL1 = L1[0]
+minL2 = L2[0]
+for el in L1:
+    if el<minL1:
+        minL1=el
+for el in L2:
+    if el<minL2:
+        minL2=el
+Lresult = []
+while(L1 and L2):
+    if minL1 < minL2:
+        Lresult.append(minL1)
+        L1.pop(L1.index(minL1))
+        if L1:
+            minL1 = L1[0]
+            for el in L1:
+                if el<minL1:
+                    minL1=el
+    else:
+        Lresult.append(minL2)
+        L2.pop(L2.index(minL2))
+        if L2:
+            minL2 = L2[0]
+            for el in L2:
+                if el<minL2:
+                    minL2=el
+if L1:
+    for el in L1:
+        Lresult.append(el)  
+else:
+    for el in L2:
+        Lresult.append(el)        
+print("L1 + L2 :", Lresult) 
